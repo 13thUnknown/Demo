@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.NotEnoughMoney;
 import com.example.demo.model.Transaction;
 import com.example.demo.model.User;
 import com.example.demo.repository.TransactionRepository;
@@ -35,7 +36,7 @@ public class TransactionsService {
             transactionRepository.save(transaction);
         }
         else {
-            throw new RuntimeException("Not enouth money");
+            throw new NotEnoughMoney();
         }
     }
 

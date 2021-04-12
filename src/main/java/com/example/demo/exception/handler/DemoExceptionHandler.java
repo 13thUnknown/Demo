@@ -1,6 +1,7 @@
 package com.example.demo.exception.handler;
 
 import com.example.demo.exception.ErrorMessage;
+import com.example.demo.exception.NotEnoughMoney;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.exception.TokenInBlackListException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,6 +36,11 @@ public class DemoExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(TokenInBlackListException.class)
     public ResponseEntity<Object> handleExceptions(TokenInBlackListException ex, WebRequest request) {
         return mapToErrorMessageBody(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST, request, null);
+    }
+
+    @ExceptionHandler(NotEnoughMoney.class)
+    public ResponseEntity<Object> handleExceptions(NotEnoughMoney ex, WebRequest request) {
+        return mapToErrorMessageBody(ex, new HttpHeaders(), HttpStatus.NOT_FOUND, request, null);
     }
 
     @ExceptionHandler(NotFoundException.class)
